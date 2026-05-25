@@ -1,0 +1,27 @@
+[
+  {
+    "type": "event",
+    "name": "PassportIssued",
+    "inputs": [
+      { "name": "agentId",  "type": "bytes32", "indexed": true },
+      { "name": "tokenId",  "type": "uint256", "indexed": true },
+      { "name": "owner",    "type": "address", "indexed": true }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "ReputationUpdated",
+    "inputs": [
+      { "name": "agentId",  "type": "bytes32", "indexed": true },
+      { "name": "oldScore", "type": "uint256", "indexed": false },
+      { "name": "newScore", "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "PassportVerified",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32", "indexed": true }
+    ]
+  }
+]

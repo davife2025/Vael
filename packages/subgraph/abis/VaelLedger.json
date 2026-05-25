@@ -1,0 +1,37 @@
+[
+  {
+    "type": "event",
+    "name": "ActivityLogged",
+    "inputs": [
+      { "name": "agentId",   "type": "bytes32", "indexed": true },
+      { "name": "entryId",   "type": "uint256", "indexed": true },
+      { "name": "action",    "type": "string",  "indexed": false },
+      { "name": "timestamp", "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getEntry",
+    "stateMutability": "view",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32" },
+      { "name": "entryId", "type": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "components": [
+          { "name": "entryId",       "type": "uint256" },
+          { "name": "agentId",       "type": "bytes32" },
+          { "name": "action",        "type": "string"  },
+          { "name": "payload",       "type": "bytes"   },
+          { "name": "target",        "type": "address" },
+          { "name": "timestamp",     "type": "uint256" },
+          { "name": "blockNumber",   "type": "uint256" },
+          { "name": "conditionHash", "type": "bytes32" }
+        ]
+      }
+    ]
+  }
+]

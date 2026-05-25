@@ -1,0 +1,36 @@
+[
+  {
+    "type": "event",
+    "name": "AgentRegistered",
+    "inputs": [
+      { "name": "agentId",   "type": "bytes32", "indexed": true },
+      { "name": "owner",     "type": "address", "indexed": true },
+      { "name": "agentType", "type": "string",  "indexed": false },
+      { "name": "createdAt", "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "AgentDeactivated",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32", "indexed": true },
+      { "name": "owner",   "type": "address", "indexed": true }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "AgentReactivated",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32", "indexed": true },
+      { "name": "owner",   "type": "address", "indexed": true }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "AgentMetadataUpdated",
+    "inputs": [
+      { "name": "agentId",       "type": "bytes32", "indexed": true },
+      { "name": "newMetadataURI","type": "string",  "indexed": false }
+    ]
+  }
+]
