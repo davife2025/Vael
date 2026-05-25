@@ -1,0 +1,31 @@
+{
+  "name": "@vael/sdk",
+  "version": "0.1.0",
+  "description": "Vael SDK — register agents, query ledgers, and read passports on Somnia",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "viem": "^2.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  },
+  "peerDependencies": {
+    "viem": "^2.0.0"
+  },
+  "keywords": ["vael", "somnia", "agent", "registry", "web3", "blockchain"]
+}

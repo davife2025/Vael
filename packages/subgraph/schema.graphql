@@ -1,0 +1,51 @@
+"""
+Vael Subgraph Schema
+Indexes all agent activity from VaelRegistry, VaelLedger, and VaelPassport contracts
+Updated: Session 3 will add derived fields and reputation data
+"""
+
+type Agent @entity {
+  id: ID!                         # agentId (bytes32 as hex string)
+  owner: Bytes!                   # Owner wallet address
+  agentType: String!              # e.g. "trading", "npc", "oracle"
+  metadataURI: String!            # IPFS URI for extended metadata
+  createdAt: BigInt!              # Unix timestamp
+  blockNumber: BigInt!            # Block at registration
+  active: Boolean!                # Current state
+  activities: [Activity!]! @derivedFrom(field: "agent")
+  passport: Passport              # One-to-one with passport (if issued)
+  totalActivities: BigInt!        # Cached count
+  lastActivityAt: BigInt          # Timestamp of most recent log entry
+}
+
+type Activity @entity {
+  id: ID!                         # agentId-entryId
+  agent: Agent!
+  entryId: BigInt!
+  action: String!                 # e.g. "transfer", "vote", "trade"
+  payload: Bytes!                 # Raw ABI-encoded payload
+  target: Bytes                   # Target address (nullable)
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  conditionHash: Bytes!           # Hash of trigger condition
+  transactionHash: Bytes!
+}
+
+type Passport @entity {
+  id: ID!                         # agentId
+  agent: Agent!
+  tokenId: BigInt!                # ERC-721 token ID
+  reputationScore: BigInt!        # 0–1000
+  totalActions: BigInt!
+  issuedAt: BigInt!
+  lastActivityAt: BigInt!
+  verified: Boolean!
+}
+
+type RegistryStats @entity {
+  id: ID!                         # singleton: "global"
+  totalAgents: BigInt!
+  totalActivities: BigInt!
+  totalPassports: BigInt!
+  lastUpdatedAt: BigInt!
+}

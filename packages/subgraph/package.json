@@ -1,0 +1,16 @@
+{
+  "name": "@vael/subgraph",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy:local": "graph deploy --node http://localhost:8020 --ipfs http://localhost:5001 vael/somnia",
+    "deploy:hosted": "graph deploy --product hosted-service vael/somnia",
+    "create:local": "graph create --node http://localhost:8020 vael/somnia"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.71.0",
+    "@graphprotocol/graph-ts": "^0.35.0"
+  }
+}

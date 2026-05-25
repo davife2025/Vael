@@ -1,0 +1,84 @@
+specVersion: 0.0.5
+description: Vael — Agent infrastructure protocol for Somnia. Indexes VaelRegistry, VaelLedger, and VaelPassport.
+repository: https://github.com/vael-protocol/vael
+
+schema:
+  file: ./schema.graphql
+
+dataSources:
+  - kind: ethereum
+    name: VaelRegistry
+    network: somnia
+    source:
+      # address: populated after Session 2 deploy
+      address: "0x0000000000000000000000000000000000000000"
+      abi: VaelRegistry
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Agent
+        - RegistryStats
+      abis:
+        - name: VaelRegistry
+          file: ./abis/VaelRegistry.json
+      eventHandlers:
+        - event: AgentRegistered(indexed bytes32,indexed address,string,uint256)
+          handler: handleAgentRegistered
+        - event: AgentDeactivated(indexed bytes32,indexed address)
+          handler: handleAgentDeactivated
+        - event: AgentReactivated(indexed bytes32,indexed address)
+          handler: handleAgentReactivated
+        - event: AgentMetadataUpdated(indexed bytes32,string)
+          handler: handleAgentMetadataUpdated
+      file: ./src/registry.ts
+
+  - kind: ethereum
+    name: VaelLedger
+    network: somnia
+    source:
+      address: "0x0000000000000000000000000000000000000000"
+      abi: VaelLedger
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Activity
+        - Agent
+        - RegistryStats
+      abis:
+        - name: VaelLedger
+          file: ./abis/VaelLedger.json
+      eventHandlers:
+        - event: ActivityLogged(indexed bytes32,indexed uint256,string,uint256)
+          handler: handleActivityLogged
+      file: ./src/ledger.ts
+
+  - kind: ethereum
+    name: VaelPassport
+    network: somnia
+    source:
+      address: "0x0000000000000000000000000000000000000000"
+      abi: VaelPassport
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Passport
+        - Agent
+        - RegistryStats
+      abis:
+        - name: VaelPassport
+          file: ./abis/VaelPassport.json
+      eventHandlers:
+        - event: PassportIssued(indexed bytes32,indexed uint256,indexed address)
+          handler: handlePassportIssued
+        - event: ReputationUpdated(indexed bytes32,uint256,uint256)
+          handler: handleReputationUpdated
+      file: ./src/passport.ts

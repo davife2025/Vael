@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Agent enrichment (mirrors on-chain data + off-chain metadata) ────────────
+
+model Agent {
+  id              String    @id           // agentId (bytes32 hex)
+  owner           String                  // owner wallet address
+  agentType       String
+  name            String?                 // from IPFS metadata
+  description     String?
+  imageUrl        String?
+  capabilities    String[]
+  model           String?                 // AI model e.g. "gpt-4o", "claude-3"
+  framework       String?                 // e.g. "eliza", "autogen", "custom"
+  createdAt       DateTime
+  active          Boolean   @default(true)
+  reputationScore Int       @default(0)   // 0–1000, synced from chain
+  totalActivities Int       @default(0)
+  lastActivityAt  DateTime?
+  verified        Boolean   @default(false)
+  passportTokenId String?
+  activities      Activity[]
+  apiKeyUsage     ApiKeyUsage[]
+
+  @@index([owner])
+  @@index([agentType])
+  @@index([reputationScore])
+}
+
+// ─── Activity log (mirrors on-chain ledger for fast querying) ─────────────────
+
+model Activity {
+  id              String    @id           // agentId-entryId
+  agentId         String
+  agent           Agent     @relation(fields: [agentId], references: [id])
+  entryId         BigInt
+  action          String
+  target          String?
+  timestamp       DateTime
+  blockNumber     BigInt
+  txHash          String
+  conditionHash   String
+
+  @@index([agentId])
+  @@index([action])
+  @@index([timestamp])
+}
+
+// ─── API Keys (for developer access tiers) ────────────────────────────────────
+
+model ApiKey {
+  id          String      @id @default(cuid())
+  key         String      @unique
+  name        String
+  ownerWallet String
+  tier        ApiTier     @default(FREE)
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  expiresAt   DateTime?
+  usageLimit  Int         @default(1000)  // requests per day
+  usage       ApiKeyUsage[]
+
+  @@index([ownerWallet])
+  @@index([key])
+}
+
+model ApiKeyUsage {
+  id        String   @id @default(cuid())
+  apiKeyId  String
+  apiKey    ApiKey   @relation(fields: [apiKeyId], references: [id])
+  agentId   String?
+  agent     Agent?   @relation(fields: [agentId], references: [id])
+  endpoint  String
+  timestamp DateTime @default(now())
+
+  @@index([apiKeyId])
+  @@index([timestamp])
+}
+
+// ─── Global stats (cached for fast dashboard reads) ───────────────────────────
+
+model GlobalStats {
+  id              String   @id @default("global")
+  totalAgents     Int      @default(0)
+  totalActivities Int      @default(0)
+  totalPassports  Int      @default(0)
+  updatedAt       DateTime @default(now())
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum ApiTier {
+  FREE        // 1,000 req/day
+  PRO         // 100,000 req/day
+  ENTERPRISE  // unlimited
+}
