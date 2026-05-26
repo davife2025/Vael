@@ -3,20 +3,71 @@
 @tailwind utilities;
 
 :root {
-  --vael-purple: #534AB7;
-  --vael-purple-light: #EEEDFE;
-  --vael-teal: #0F6E56;
-  --vael-teal-light: #E1F5EE;
+  --vael-bg:          #0a0a0f;
+  --vael-bg-card:     #111118;
+  --vael-bg-hover:    #16161f;
+  --vael-border:      #1e1e2e;
+  --vael-border-soft: #252535;
+  --vael-purple:      #7c6fff;
+  --vael-purple-dim:  #4a427f;
+  --vael-purple-glow: rgba(124,111,255,0.15);
+  --vael-teal:        #2dd4bf;
+  --vael-teal-dim:    #1a6b62;
+  --vael-text-1:      #f0f0ff;
+  --vael-text-2:      #9090b0;
+  --vael-text-3:      #5a5a78;
+  --vael-green:       #4ade80;
+  --vael-red:         #f87171;
+  --vael-amber:       #fbbf24;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #fafafa;
-  color: #111;
+  background: var(--vael-bg);
+  color: var(--vael-text-1);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--vael-bg); }
+::-webkit-scrollbar-thumb { background: var(--vael-border); border-radius: 3px; }
+
+/* Selection */
+::selection { background: var(--vael-purple-glow); color: var(--vael-text-1); }
+
+/* Mono font for addresses and IDs */
+.mono { font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; }
+
+/* Glow effects */
+.glow-purple { box-shadow: 0 0 20px var(--vael-purple-glow); }
+.text-glow { text-shadow: 0 0 20px rgba(124,111,255,0.4); }
+
+/* Animations */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-slide-up { animation: slide-up 0.3s ease forwards; }
+.animate-fade-in  { animation: fade-in 0.2s ease forwards; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+/* Live dot */
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--vael-green);
+  animation: pulse-soft 1.5s ease-in-out infinite;
 }
