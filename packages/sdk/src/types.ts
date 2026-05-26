@@ -120,3 +120,13 @@ export interface ActivityFilter {
   toTimestamp?: bigint;
   limit?: number;
 }
+
+// ─── Log Activity ─────────────────────────────────────────────────────────────
+
+export interface LogActivityParams {
+  agentId:   Hex;
+  action:    string;
+  payload?:  Uint8Array | Record<string, unknown>;
+  target?:   Address;
+  condition?: string; // Human-readable condition string — hashed to bytes32
+}
