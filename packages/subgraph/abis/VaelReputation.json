@@ -1,0 +1,60 @@
+[
+  {
+    "type": "event",
+    "name": "ScoreComputed",
+    "inputs": [
+      { "name": "agentId",   "type": "bytes32", "indexed": true  },
+      { "name": "oldScore",  "type": "uint256", "indexed": false },
+      { "name": "newScore",  "type": "uint256", "indexed": false },
+      { "name": "timestamp", "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "Staked",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32", "indexed": true  },
+      { "name": "staker",  "type": "address", "indexed": true  },
+      { "name": "amount",  "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "Unstaked",
+    "inputs": [
+      { "name": "agentId", "type": "bytes32", "indexed": true  },
+      { "name": "staker",  "type": "address", "indexed": true  },
+      { "name": "amount",  "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "Endorsed",
+    "inputs": [
+      { "name": "agentId",   "type": "bytes32", "indexed": true  },
+      { "name": "endorser",  "type": "bytes32", "indexed": true  },
+      { "name": "weight",    "type": "uint256", "indexed": false }
+    ]
+  },
+  {
+    "type": "function",
+    "name": "getScore",
+    "stateMutability": "view",
+    "inputs":  [{ "name": "agentId", "type": "bytes32" }],
+    "outputs": [{ "type": "uint256" }]
+  },
+  {
+    "type": "function",
+    "name": "getTotalStake",
+    "stateMutability": "view",
+    "inputs":  [{ "name": "agentId", "type": "bytes32" }],
+    "outputs": [{ "type": "uint256" }]
+  },
+  {
+    "type": "function",
+    "name": "getEndorsements",
+    "stateMutability": "view",
+    "inputs":  [{ "name": "agentId", "type": "bytes32" }],
+    "outputs": [{ "type": "uint256" }]
+  }
+]

@@ -101,3 +101,42 @@ enum ApiTier {
   PRO         // 100,000 req/day
   ENTERPRISE  // unlimited
 }
+
+// ─── Reputation staking (mirrors on-chain stake events) ───────────────────────
+
+model StakePosition {
+  id        String   @id @default(cuid())
+  agentId   String
+  staker    String
+  amount    String   // stored as string to handle BigInt safely
+  stakedAt  DateTime
+  withdrawn Boolean  @default(false)
+
+  @@index([agentId])
+  @@index([staker])
+}
+
+// ─── Endorsements (mirrors on-chain Endorsed events) ─────────────────────────
+
+model Endorsement {
+  id          String   @id @default(cuid())
+  agentId     String
+  endorserId  String   // endorser agentId
+  weight      Int      // endorser reputation score at time of endorsement
+  endorsedAt  DateTime @default(now())
+
+  @@unique([agentId, endorserId])
+  @@index([agentId])
+}
+
+// ─── Reputation score history (for sparkline charts) ─────────────────────────
+
+model ReputationHistory {
+  id        String   @id @default(cuid())
+  agentId   String
+  score     Int
+  recordedAt DateTime @default(now())
+
+  @@index([agentId])
+  @@index([recordedAt])
+}

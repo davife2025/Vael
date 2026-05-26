@@ -5,3 +5,4 @@ export { AgentCard }       from "./AgentCard";
 export { PassportBadge }   from "./PassportBadge";
 export { LedgerTimeline }  from "./LedgerTimeline";
 export { LiveFeed }        from "./LiveFeed";
+export { ReputationScore } from "./ReputationScore";
