@@ -117,7 +117,7 @@ export default function AgentPage() {
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               {[
                 ["Owner",    truncateAddress(agent.owner)],
-                ["Born",     formatDate(agent.createdAt)],
+              ["Born", formatDate(new Date(agent.createdAt).getTime())],
                 ["Actions",  agent.totalActivities || "0"],
               ].map(([label, val]) => (
                 <div key={label as string}>
