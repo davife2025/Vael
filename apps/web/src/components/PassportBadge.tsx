@@ -105,7 +105,7 @@ export function PassportBadge({ passport, loading }: PassportBadgeProps) {
         </div>
         <div style={{ marginLeft: "auto", textAlign: "right" }}>
           <div style={{ fontSize: "12px", color: "var(--vael-text-3)" }}>
-            Issued {formatDateTime(passport.issuedAt)}
+         Issued {formatDateTime(Date.parse(passport.issuedAt))}
           </div>
         </div>
       </div>
