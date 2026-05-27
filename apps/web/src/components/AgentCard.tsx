@@ -115,7 +115,7 @@ export function AgentCard({ agent }: AgentCardProps) {
 
           {/* Activity count */}
           <span style={{ fontSize: "11px", color: "var(--vael-text-3)", marginLeft: "auto" }}>
-            {activities} actions · {agent.lastActivityAt ? timeAgo(agent.lastActivityAt) : timeAgo(agent.createdAt)}
+     {agent.lastActivityAt ? timeAgo(new Date(agent.lastActivityAt).getTime()) : timeAgo(new Date(agent.createdAt).getTime())}
           </span>
         </div>
       </div>
