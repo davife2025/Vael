@@ -71,7 +71,7 @@ export function ReputationScore({ agentId }: ReputationScoreProps) {
           Score Breakdown
         </div>
         <div style={{ fontSize: "20px", fontWeight: 600, color, letterSpacing: "-0.5px" }}>
-          {factors.total}<span style={{ fontSize: "12px", color: "var(--vael-text-3)", fontWeight: 400" }}>/1000</span>
+          {factors.total}<span style={{ fontSize: "12px", color: "var(--vael-text-3)", fontWeight: 400 }}>/'1000'</span>
         </div>
       </div>
 
