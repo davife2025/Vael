@@ -129,7 +129,7 @@ export function LedgerTimeline({ entries, loading, hasMore, onLoadMore }: Ledger
 
                 {/* Timestamp */}
                 <div style={{ fontSize: "12px", color: "var(--vael-text-3)", marginLeft: "auto", flexShrink: 0 }}>
-                  {timeAgo(entry.timestamp)}
+                {timeAgo(Date.parse(entry.timestamp))}
                 </div>
 
                 {/* Expand chevron */}
@@ -149,7 +149,7 @@ export function LedgerTimeline({ entries, loading, hasMore, onLoadMore }: Ledger
                 }}>
                   {[
                     ["Block",       entry.blockNumber],
-                    ["Timestamp",   formatDateTime(entry.timestamp)],
+                    ["Timestamp",   formatDateTime(new Date(entry.timestamp).getTime())],
                     ["Tx Hash",     truncateAddress(entry.transactionHash, 8)],
                     ["Condition",   entry.conditionHash !== "0x" + "0".repeat(64)
                       ? truncateAddress(entry.conditionHash, 8) : "—"],
