@@ -22,6 +22,9 @@ export interface AgentSummary {
   active:          boolean;
   totalActivities: string;
   lastActivityAt?: string;
+  capabilities?: string[];
+  model?: string;
+  framework?: string;
   passport?: {
     tokenId:         string;
     reputationScore: string;
