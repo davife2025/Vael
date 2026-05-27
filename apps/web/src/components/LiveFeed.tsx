@@ -73,7 +73,7 @@ export function LiveFeed() {
                   </div>
 
                   <div style={{ fontSize: "11px", color: "var(--vael-text-3)", flexShrink: 0 }}>
-                    {timeAgo(agent.createdAt)}
+                 {timeAgo(Date.parse(agent.createdAt))}
                   </div>
                 </div>
               </Link>
@@ -130,7 +130,7 @@ export function LiveFeed() {
               )}
 
               <div style={{ fontSize: "11px", color: "var(--vael-text-3)", flexShrink: 0 }}>
-                {timeAgo(act.timestamp)}
+                {timeAgo(new Date(act.timestamp).getTime())}
               </div>
             </div>
           ))}
