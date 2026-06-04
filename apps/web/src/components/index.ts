@@ -8,3 +8,6 @@ export { LiveFeed }        from "./LiveFeed";
 export { ReputationScore } from "./ReputationScore";
 export { TaskBoard } from "./TaskBoard";
 export { AgentMemoryPanel } from "./AgentMemoryPanel";
+export { GrowthChart }     from "./GrowthChart";
+export { ActionBreakdown } from "./ActionBreakdown";
+export { OwnerAgentTable } from "./OwnerAgentTable";

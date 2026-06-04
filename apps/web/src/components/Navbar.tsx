@@ -11,6 +11,8 @@ export function Navbar() {
     { href: "/keys",        label: "API Keys" },
     { href: "/marketplace", label: "Marketplace" },
     { href: "/gate",        label: "VaelGate" },
+    { href: "/analytics",  label: "Analytics" },
+    { href: "/dashboard",  label: "Dashboard" },
   ];
 
   return (
