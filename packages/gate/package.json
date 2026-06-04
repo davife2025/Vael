@@ -1,0 +1,49 @@
+{
+  "name": "@vael/gate",
+  "version": "0.1.0",
+  "description": "VaelGate — passport verification middleware for Somnia dApps. Drop-in agent identity and reputation gating.",
+  "main":  "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import":  "./dist/index.js",
+      "require": "./dist/index.js",
+      "types":   "./dist/index.d.ts"
+    },
+    "./react": {
+      "import":  "./dist/react/index.js",
+      "require": "./dist/react/index.js",
+      "types":   "./dist/react/index.d.ts"
+    },
+    "./express": {
+      "import":  "./dist/express/index.js",
+      "require": "./dist/express/index.js",
+      "types":   "./dist/express/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build":   "tsc",
+    "dev":     "tsc --watch",
+    "test":    "vitest run",
+    "clean":   "rm -rf dist"
+  },
+  "dependencies": {
+    "@vael/sdk":  "workspace:*",
+    "viem":       "^2.10.0"
+  },
+  "devDependencies": {
+    "typescript":  "^5.4.0",
+    "@types/node": "^20.0.0",
+    "vitest":      "^1.6.0"
+  },
+  "peerDependencies": {
+    "viem":    "^2.0.0",
+    "react":   "^18.0.0",
+    "express": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react":   { "optional": true },
+    "express": { "optional": true }
+  },
+  "keywords": ["vael", "somnia", "agent", "passport", "gate", "middleware", "web3"]
+}

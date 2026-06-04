@@ -9,6 +9,8 @@ export function Navbar() {
     { href: "/",            label: "Explorer" },
     { href: "/leaderboard", label: "Leaderboard" },
     { href: "/keys",        label: "API Keys" },
+    { href: "/marketplace", label: "Marketplace" },
+    { href: "/gate",        label: "VaelGate" },
   ];
 
   return (
