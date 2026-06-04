@@ -12,6 +12,8 @@ import { ledgerRouter }    from "./routers/ledger.router";
 import { passportRouter }  from "./routers/passport.router";
 import { apiKeysRouter }   from "./routers/apiKeys.router";
 import { reputationRouter }from "./routers/reputation.router";
+import { memoryRouter }       from "./routers/memory.router";
+import { marketplaceRouter } from "./routers/marketplace.router";
 import { billingRouter }   from "./routers/billing.router";
 
 const app  = express();
@@ -55,6 +57,8 @@ app.use("/v1/ledger",     ledgerRouter);
 app.use("/v1/passport",   passportRouter);
 app.use("/v1/reputation", reputationRouter);
 app.use("/v1/keys",       apiKeysRouter);
+app.use("/v1/memory",      memoryRouter);
+app.use("/v1/marketplace", marketplaceRouter);
 app.use("/v1/billing",    billingRouter);
 
 // ─── Root ─────────────────────────────────────────────────────────────────────

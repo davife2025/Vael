@@ -6,3 +6,5 @@ export { PassportBadge }   from "./PassportBadge";
 export { LedgerTimeline }  from "./LedgerTimeline";
 export { LiveFeed }        from "./LiveFeed";
 export { ReputationScore } from "./ReputationScore";
+export { TaskBoard } from "./TaskBoard";
+export { AgentMemoryPanel } from "./AgentMemoryPanel";
