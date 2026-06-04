@@ -140,3 +140,54 @@ model ReputationHistory {
   @@index([agentId])
   @@index([recordedAt])
 }
+
+// ─── Webhooks ─────────────────────────────────────────────────────────────────
+
+model Webhook {
+  id           String          @id @default(cuid())
+  ownerWallet  String
+  url          String
+  secret       String          // HMAC signing secret
+  events       String[]        // e.g. ["agent.registered","activity.logged"]
+  active       Boolean         @default(true)
+  createdAt    DateTime        @default(now())
+  lastFiredAt  DateTime?
+  failureCount Int             @default(0)
+  deliveries   WebhookDelivery[]
+
+  @@index([ownerWallet])
+  @@index([active])
+}
+
+model WebhookDelivery {
+  id          String   @id @default(cuid())
+  webhookId   String
+  webhook     Webhook  @relation(fields: [webhookId], references: [id])
+  event       String
+  payload     String   // JSON string
+  statusCode  Int?
+  success     Boolean  @default(false)
+  attempts    Int      @default(1)
+  deliveredAt DateTime @default(now())
+
+  @@index([webhookId])
+  @@index([event])
+}
+
+// ─── Notifications (in-app) ───────────────────────────────────────────────────
+
+model Notification {
+  id          String   @id @default(cuid())
+  ownerWallet String
+  agentId     String?
+  type        String   // "activity", "reputation", "staked", "task_assigned" etc.
+  title       String
+  body        String
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  metadata    String?  // JSON string for extra context
+
+  @@index([ownerWallet])
+  @@index([read])
+  @@index([createdAt])
+}

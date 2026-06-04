@@ -13,6 +13,7 @@ export function Navbar() {
     { href: "/gate",        label: "VaelGate" },
     { href: "/analytics",  label: "Analytics" },
     { href: "/dashboard",  label: "Dashboard" },
+    { href: "/webhooks",  label: "Webhooks" },
   ];
 
   return (
