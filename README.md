@@ -14,10 +14,10 @@ vael/
 │   ├── contracts/          # Solidity smart contracts (Hardhat)
 │   │   ├── contracts/
 │   │   │   ├── interfaces/ # IVaelRegistry, IVaelLedger, IVaelPassport
-│   │   │   ├── VaelRegistry.sol    (Session 2)
-│   │   │   ├── VaelLedger.sol      (Session 2)
-│   │   │   ├── VaelPassport.sol    (Session 2)
-│   │   │   └── VaelReputation.sol  (Session 6)
+│   │   │   ├── VaelRegistry.sol    
+│   │   │   ├── VaelLedger.sol      
+│   │   │   ├── VaelPassport.sol    
+│   │   │   └── VaelReputation.sol  \
 │   │   ├── test/
 │   │   └── scripts/
 │   ├── sdk/                # @vael/sdk — npm package for developers
